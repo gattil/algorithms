@@ -1,4 +1,4 @@
-# Compute optimum using Conjugate Gradient from scipy.optimize.minimize
+# Compute Optimum using Conjugate Gradient from scipy.optimize.minimize
 
 The "CG" method from the minimize function in the scipy.optimize module is an optimization algorithm that uses the conjugate gradient method to find the minimum of a function defined on a finite-dimensional space. 
 It is a type of gradient descent method that iteratively improves the solution to an optimization problem by taking steps in the direction of the negative gradient of the objective function.
