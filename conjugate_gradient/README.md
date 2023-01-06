@@ -1,8 +1,10 @@
 # Conjugate Gradient Algorithm for Function Minimization using scipy.optimize.minimize
 
-The Conjugate Gradient (CG) method is an algorithm for finding the minimum of a function. It is an iterative method that generates a sequence of points that hopefully converges to the minimum of the function.
+The Conjugate Gradient (CG) method is an algorithm for finding the minimum of a function. 
+It is an iterative method that generates a sequence of points that hopefully converges to the minimum of the function.
 
-The scipy.optimize module provides a function called minimize that can be used to minimize a function using a variety of optimization algorithms, including CG. When you use the CG method with minimize, the function first takes an initial guess for the location of the minimum and then iteratively improves this guess using the CG algorithm.
+The scipy.optimize module provides a function called minimize that can be used to minimize a function using a variety of optimization algorithms, 
+including CG. When you use the CG method with minimize, the function first takes an initial guess for the location of the minimum and then iteratively improves this guess using the CG algorithm.
 
 The CG algorithm works by constructing a sequence of search directions that are conjugate to each other. This means that at each iteration, the search direction is chosen to be orthogonal to the search directions from all previous iterations. By using conjugate search directions, the CG algorithm is able to make more efficient progress towards the minimum of the function compared to other methods that use unrelated search directions.
 
