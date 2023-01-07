@@ -1,26 +1,43 @@
-# Conjugate Gradient Algorithm for Function Minimization using scipy.optimize.minimize
+# Optimizing Functions with Conjugate Gradient in scipy.optimize.minimize
 
-The Conjugate Gradient (CG) method is an algorithm for finding the minimum of a function. 
-It is an iterative method that generates a sequence of points that hopefully converges to the minimum of the function.
+## Overview
+Conjugate gradient is an algorithm used to find the minimum of a function. It is particularly useful for finding the minimum of a function that is defined by a large number of variables, such as in machine learning.
 
-The scipy.optimize module provides a function called minimize that can be used to minimize a function using a variety of optimization algorithms, 
-including CG. When you use the CG method with minimize, the function first takes an initial guess for the location of the minimum and then iteratively improves this guess using the CG algorithm.
+The algorithm works by iteratively improving an approximation to the minimum of the function. At each step, the algorithm computes a direction in which the function is decreasing the fastest, and moves in that direction. The direction is chosen to be "conjugate" to the previous direction, meaning that it is perpendicular to all the previous directions. This helps the algorithm converge faster, because it avoids oscillating back and forth between different directions.
 
-The CG algorithm works by constructing a sequence of search directions that are conjugate to each other. This means that at each iteration, the search direction is chosen to be orthogonal to the search directions from all previous iterations. By using conjugate search directions, the CG algorithm is able to make more efficient progress towards the minimum of the function compared to other methods that use unrelated search directions.
+The algorithm stops when it reaches a point where the function is no longer decreasing, or when the improvement in the approximation is below a certain threshold.
 
-The CG algorithm also uses a line search at each iteration to determine the step size to take along the current search direction. The line search seeks to find the step size that minimizes the function along the current search direction, while also satisfying a set of conditions known as the "Wolfe conditions".
+Overall, conjugate gradient is a fast and efficient algorithm for finding the minimum of a function, and is widely used in a variety of applications, including machine learning, optimization, and scientific computing.
 
-The CG algorithm terminates when the magnitude of the gradient of the function at the current iterate is less than a specified tolerance, or when the maximum number of iterations has been reached.
+## Usage
+Conjugate gradient is an algorithm for finding the minimum of a differentiable, real-valued function f(x), defined over an n-dimensional domain. The algorithm works by iteratively constructing a sequence of n-dimensional search directions p_k, and using these directions to generate a sequence of points x_k that approximates the minimum of the function.
 
-To use the CG method with the minimize function from scipy.optimize, you would specify the method parameter as 'CG'. For example:
+At each iteration, the algorithm computes the gradient of the function at the current point, g_k = ∇f(x_k), and uses this to compute the next search direction p_k as a linear combination of the previous search direction p_k-1 and the gradient g_k. Specifically, p_k is chosen to be conjugate to all the previous search directions p_0, p_1, ..., p_k-1, meaning that it is orthogonal to all of these directions. This is done to ensure that the algorithm does not oscillate back and forth between different directions, and converges more quickly to the minimum of the function.
+
+The search direction p_k is then used to generate the next point x_k+1 by moving a small distance in the direction of p_k. This is done using a line search algorithm, which determines the optimal step size α_k that minimizes the function in the direction of p_k. The new point x_k+1 is then computed as x_k+1 = x_k + α_k p_k.
+
+The algorithm stops when the gradient of the function at the current point is close to zero, indicating that the minimum of the function has been found to a satisfactory accuracy. The conjugate gradient algorithm has a number of attractive properties, including a global convergence guarantee and a low per-iteration computational cost. It is widely used in a variety of applications, including machine learning, optimization, and scientific computing.
+
+## Example
+Here is a short example of using the conjugate gradient algorithm to minimize a quadratic function using the scipy.optimize.minimize function:
 
 ```python
-def my_function(x):
-  # Return the value of the function at x
-  return some_expression
+import numpy as np
+from scipy.optimize import minimize
 
-x0 = # Initial guess for the minimum
-res = minimize(my_function, x0, method='CG')
+# Define the quadratic function to minimize
+def quadratic(x):
+    return (x[0] - 2) ** 2 + (x[1] - 3) ** 2
+
+
+# Initialize the optimization at x = [0, 0]
+x0 = np.array([0, 0])
+
+# Use the conjugate gradient algorithm to minimize the function
+res = minimize(quadratic, x0, method="CG")
+
+# Print the optimal point found by the algorithm
+print(res.x)
 ```
 
-This will run the CG algorithm starting from the initial guess x0, and try to find the minimum of my_function. The final result will be stored in the res object, which contains various information about the optimization process, including the final value of x that minimizes my_function.
+This code will find the minimum of the quadratic function, which is at the point [2, 3]. The output of the minimize function will contain the optimal point found by the algorithm, as well as other information about the optimization process.
