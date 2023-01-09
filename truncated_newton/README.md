@@ -38,3 +38,9 @@ minimum_point = result.x
 ```
 
 The result object returned by the minimize function contains information about the optimization process, such as the final value of the objective function and the values of the variables at the minimum. You can access this information using the attributes of the result object, such as result.fun for the minimum value of the objective function and result.x for the values of the variables at the minimum.
+
+## Remark
+
+The scipy.optimize.minimize function is used to find the minimum value of a function. It has many possible solvers that can be used to find this minimum. One of these solvers is the Conjugate Gradient (CG) method, which is a gradient-based optimization algorithm for finding the minimum of a function. Another solver is the Truncated Newton (TNC) method, which is a modified Newton's method that uses a truncated Taylor series expansion to approximate the Hessian matrix (the matrix of second partial derivatives of a function).
+
+The CG method is based on finding the minimum of a function by following the negative gradient of the function, while the TNC method uses Newton's method, which involves finding the minimum by using information about the Hessian matrix of the function. The CG method is generally faster than the TNC method, but the TNC method is more accurate and may converge to the minimum faster in some cases.
