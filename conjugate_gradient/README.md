@@ -25,6 +25,7 @@ Here is a short example of using the conjugate gradient algorithm to minimize a 
 import numpy as np
 from scipy.optimize import minimize
 
+
 # Define the quadratic function to minimize
 def quadratic(x):
     return (x[0] - 2) ** 2 + (x[1] - 3) ** 2
