@@ -18,15 +18,17 @@ Here is an example of how you might use the TNC algorithm with scipy.optimize.mi
 ```python
 from scipy.optimize import minimize
 
+
 def objective_function(x):
-  # define your objective function here
-  return f(x)
+    # define your objective function here
+    return f(x)
+
 
 # set the initial starting point for the optimization
 x0 = [0, 0, 0]
 
 # use the TNC algorithm to find the minimum of the objective function
-result = minimize(objective_function, x0, method='TNC')
+result = minimize(objective_function, x0, method="TNC")
 
 # get the minimum value of the objective function
 minimum_value = result.fun
